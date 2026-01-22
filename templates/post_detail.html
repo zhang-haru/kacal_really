@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2>{{ post.title }}</h2>
+    <p class="text-muted">by {{ post.author.username }} | {{ post.created_at }}</p>
+    <p>{{ post.content }}</p>
+
+    <div class="d-flex gap-2">
+      <a class="btn btn-outline-primary" href="{% url 'post_edit' post.id %}">edit</a>
+      <a class="btn btn-outline-danger" href="{% url 'post_delete' post.id %}">delete</a>
+      <a class="btn btn-outline-secondary" href="{% url 'timeline' %}">back</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

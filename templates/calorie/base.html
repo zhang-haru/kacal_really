@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+  <nav class="mb-3">
+    <a class="btn btn-outline-primary me-2" href="{% url 'calorie_dashboard' %}">
+      ダッシュボード
+    </a>
+    <a class="btn btn-outline-secondary me-2" href="{% url 'calorie_entry_list' %}">
+      食事記録
+    </a>
+    <a class="btn btn-outline-dark" href="{% url 'timeline' %}">
+      タイムラインへ戻る
+    </a>
+  </nav>
+
+  {% block calorie_content %}{% endblock %}
+</div>
+{% endblock %}

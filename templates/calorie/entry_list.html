@@ -1,0 +1,35 @@
+{% extends "calorie/base.html" %}
+{% block calorie_content %}
+
+<h2>食事記録一覧</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>日付</th>
+      <th>食事名</th>
+      <th>カロリー</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for e in entries %}
+    <tr>
+      <td>{{ e.date }}</td>
+      <td>{{ e.name }}</td>
+      <td>{{ e.kcal }}</td>
+      <td>
+        <a href="{% url 'calorie_entry_delete' e.id %}" class="btn btn-sm btn-danger">
+          削除
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'calorie_entry_create' %}">
+  新しい食事を追加
+</a>
+
+{% endblock %}

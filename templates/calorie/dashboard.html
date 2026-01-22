@@ -1,0 +1,52 @@
+{% extends "calorie/base.html" %}
+{% block calorie_content %}
+
+<h2 class="mb-3">カロリー管理ダッシュボード</h2>
+
+<p>日付：{{ today }}</p>
+
+<ul class="list-group mb-3">
+  <li class="list-group-item">
+    摂取カロリー：{{ today_totals.kcal|default:0 }} kcal / {{ profile.kcal_goal }} kcal
+  </li>
+  <li class="list-group-item">
+    タンパク質：{{ today_totals.protein|default:0 }} g / {{ profile.protein_goal }} g
+  </li>
+  <li class="list-group-item">
+    脂質：{{ today_totals.fat|default:0 }} g / {{ profile.fat_goal }} g
+  </li>
+  <li class="list-group-item">
+    炭水化物：{{ today_totals.carb|default:0 }} g / {{ profile.carb_goal }} g
+  </li>
+</ul>
+
+<div class="d-flex gap-2 mb-4">
+  <a class="btn btn-primary" href="{% url 'calorie_entry_create' %}">
+    食事を追加
+  </a>
+  <a class="btn btn-outline-secondary" href="{% url 'calorie_settings' %}">
+    目標設定
+  </a>
+</div>
+
+<h5>直近7日間のカロリー推移</h5>
+<canvas id="kcalchart" height="120"></canvas>
+
+{{ labels|json_script:"kcal-labels" }}
+{{ kcal_series|json_script:"kcal-series" }}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const labels = JSON.parse(document.getElementById("kcal-labels").textContent);
+  const data = JSON.parse(document.getElementById("kcal-series").textContent);
+
+  new Chart(document.getElementById("kcalchart"), {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [{ label: "カロリー (kcal)", data: data }]
+    }
+  });
+</script>
+
+{% endblock %}

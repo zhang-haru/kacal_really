@@ -1,0 +1,16 @@
+{% extends "calorie/base.html" %}
+{% block calorie_content %}
+
+<h2>削除確認</h2>
+
+<p>この食事記録を削除してもよろしいですか？</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-danger">削除する</button>
+  <a class="btn btn-secondary" href="{% url 'calorie_entry_list' %}">
+    キャンセル
+  </a>
+</form>
+
+{% endblock %}

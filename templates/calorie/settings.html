@@ -1,0 +1,14 @@
+{% extends "calorie/base.html" %}
+{% block calorie_content %}
+
+<h2>目標設定</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary">
+    保存
+  </button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h2>login</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="btn btn-primary">login</button>
+    </form>
+    <p class="mt-3 mb-0">
+      no account? <a href="{% url 'signup' %}">signup</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

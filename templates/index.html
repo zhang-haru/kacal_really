@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h3>home</h3>
+    <p class="mb-0">
+      go to <a href="{% url 'timeline' %}">タイムライン</a> or <a href="{% url 'calorie_dashboard' %}">カロリー記録</a>.
+    </p>
+  </div>
+</div>
+{% endblock %}
